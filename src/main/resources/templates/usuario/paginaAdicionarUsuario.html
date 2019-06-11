@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http:www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<meta http-equiv="Content-Type" content="text/html; charset-8"/>
+<meta name="viewport" content="width=device-width" />
+<title>Cadastro de Usuário</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"></link>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+ 	function validaSenha (input){ 
+  		  if (input.value != document.getElementById('txtSenha').value) {
+   				 input.setCustomValidity('Repita a senha corretamente');
+ 		 } else {
+   				 input.setCustomValidity('');
+  }
+} 
+ 	function validarSenha(form){ 
+ 	    senha = document.formulario.senha.value
+ 	    senhaRepetida = document.formulario.repetir_senha.value
+ 	    if (senha != senhaRepetida){
+ 	        alert("Repita a senha corretamente");
+ 	        document.formulario.repetir_senha.focus();  
+ 	        return false;
+ 	    }
+ 	}
+</script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#barra-navegacao">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a th:href="@{/index/}" class="navbar-brand">Sistema Ezentis</a>
+            </div>
+            <div class="collapse navbar-collapse" id="barra-navegacao">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a th:href="@{/usuario/listarUsuario/}">Usuário</a></li>
+                    <li><a th:href="@{/recurso/listarRecurso/}">Recurso</a></li>
+                    <li><a th:href="@{/servico/listarServico/}">Ordem de Serviço</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+	<div class="container">
+		<div class="panel-heading" align="center">
+			<strong>CADASTRO DE USUÁRIO</strong>
+		</div>
+		
+		<div class="panel-body">
+        	<form class="form-horizontal" th:object="${usuario}" th:action="@{/usuario/salvarUsuario}" method="POST" style="margin: 10px">
+        		<div class="form-group">
+        			<fieldset>
+        				<div class="form-group row">
+        					<label>NOME</label>
+        					<input type="text" class="form-control input-sm" th:field="*{nome}" autofocus="autofocus" placeholder="Informe o nome" maxtength="50"/>
+        				</div>
+        				<div class="form-group row">
+        					<label>CPF</label>
+        					<input type="text" class="form-control input-sm" th:field="*{email}" autofocus="autofocus" placeholder="Informe o Cpf" maxtength="50"/>
+        				</div>
+        				<div class="form-group row">
+        					<label>E-MAIL</label>
+        					<input type="text" class="form-control input-sm" th:field="*{cpf}" autofocus="autofocus" placeholder="Informe o Email" maxtength="50"/>
+        				</div>
+        				<div class="form-group row">
+        					<label for="txtSenha">SENHA </label><br/>
+        					<input id="txtSenha" name="senha" type="password" class="form-control input-sm" size="30" autofocus="autofocus" required placeholder="Digite uma Senha" title="Senha" maxlength="10" />
+        				</div>
+        				<div class="form-group row">
+        					<label for="repetir_senha">CONFIRMAR SENHA</label><br/>
+        					<input id="repetir_senha" name="repetir_senha" type="password" class="form-control input-sm" size="30" required  placeholder="Repetir Senha" title="Repetir Senha" oninput="validaSenha(this)" maxlength="10"/>
+        				</div>
+        			</fieldset>
+       			</div> 
+				<div align="center">
+					<button type="submit" class="btn btn-sm btn-success">SALVAR</button>
+					<a th:href="@{/usuario/listarUsuario/}" class="btn btn-sm btn-default">CANCELAR</a>
+				</div>
+			</form>
+		</div>
+	</div>
+
+<!-- ============================================== -->
+<!-- 
+	<div class="container">
+		<div class="panel-heading" >
+			<strong>Cadastro de Usuario</strong>
+		</div>
+	<div class="panel-body">
+		<form  class="form-horizotal" th:object="${usuario}" th:action="@{/usuario/salvarUsuario}" method="POST" style="margin:10px">
+			<div class="form-group">
+				<fieldset>
+					<div class="form-group row">
+						<label>Nome</label>
+						<input type="text" class="form-control input-sm" th:field="*{nome}" autofocus="autofocus" placeholder="Nome do usuario" maxlength="50" />
+						<label>Cpf</label>
+						<input type="number" class="form-control input-sm" th:field="*{cpf}" autofocus="autofocus" placeholder="cpf do usuario" maxlength="100" />
+						<label>Email</label>
+						<input type="email" class="form-control input-sm" th:field="*{email}" autofocus="autofocus" placeholder="Email do usuario" maxlength="10" />
+					</div>
+        	     
+        	      <div class="form-group row">
+        	       <label for="txtSenha">Senha </label><br/>
+                    <input id="txtSenha"  name="senha" type="password" size="30" autofocus="autofocus" required placeholder="Digite uma Senha" title="Senha" maxlength="10" />
+                    <label for="repetir_senha">Confirmar Senha</label><br/>
+                    <input id="repetir_senha"  name="repetir_senha" type="password" size="30" required  placeholder="Repetir Senha" title="Repetir Senha" oninput="validaSenha(this)" maxlength="10"/>
+                    
+        	       </div>
+        	   </div>
+        	
+           </fieldset>
+        	
+        </div>
+         <div alien="center">
+             <button type="submit" class="btn btn-sm btn-primary">Salvar</button>
+        	<a th:href="@{/usuario/listarUsuario}" class="btn btn-sm btn-default">Cancelar</a>
+         </div>
+       </form>
+     </div>
+ </div>
+-->
+</body>
+</html>

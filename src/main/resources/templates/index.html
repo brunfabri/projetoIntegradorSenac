@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http:www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<meta http-equiv="Content-Type" content="text/html; charset-8"/>
+<meta name="viewport" content="width=device-width" />
+<title>Ezentis | Pagina Inicial</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"></link>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#barra-navegacao">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a th:href="@{/index/}" class="navbar-brand">Sistema Ezentis</a>
+            </div>
+            <div class="collapse navbar-collapse" id="barra-navegacao">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a th:href="@{/usuario/listarUsuario/}">Usuário</a></li>
+                    <li><a th:href="@{/recurso/listarRecurso/}">Recurso</a></li>
+                    <li><a th:href="@{/servico/listarServico/}">Ordem de Serviço</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</body>
+</html>
